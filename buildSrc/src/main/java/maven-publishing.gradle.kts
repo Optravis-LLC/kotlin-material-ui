@@ -5,8 +5,8 @@ plugins {
     `maven-publish`
 }
 
-val group = "net.subroh0508.kotlinmaterialui"
-val libVersion = "0.5.6"
+val group = "com.optravis.kotlinmaterialui"
+val libVersion = "0.1.0"
 
 val siteUrl = "https://github.com/subroh0508/kotlin-material-ui"
 val githubUrl = "https://github.com/subroh0508/kotlin-material-ui"
@@ -32,10 +32,17 @@ publishing {
         "date-fns" -> "-DateIO-date-fns"
         else -> ""
     }
-}
 
-signing {
-    sign(publishing.publications["kotlin"])
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Optravis-LLC/kotlin-material-ui")
+            credentials {
+                username = "Optravis-LLC"
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 fun MavenPublication.metadata() {
