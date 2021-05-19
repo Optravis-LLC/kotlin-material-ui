@@ -29,23 +29,6 @@ publishing {
         "date-fns" -> "-DateIO-date-fns"
         else -> ""
     }
-
-    val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-    val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-
-    val user = project.property("sonatypeUsername")?.toString()
-    val key = project.property("sonatypePassword")?.toString()
-
-    repositories {
-        maven {
-            name = "Kotlin-Material-UI$repoNameSuffix"
-            url = uri(releasesRepoUrl)
-            credentials {
-                username = user
-                password = key
-            }
-        }
-    }
 }
 
 signing {
