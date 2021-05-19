@@ -13,4 +13,8 @@ cmake-build-*/
 # File-based project format
 *.iws
 
+# NodeJS
 node_modules/
+
+# Release tool
+/autorel

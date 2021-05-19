@@ -29,10 +29,17 @@ publishing {
         "date-fns" -> "-DateIO-date-fns"
         else -> ""
     }
-}
 
-signing {
-    sign(publishing.publications["kotlin"])
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Optravis-LLC/kotlin-material-ui")
+            credentials {
+                username = "Optravis-LLC"
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 fun MavenPublication.metadata() {
