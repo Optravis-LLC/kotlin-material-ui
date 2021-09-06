@@ -6,13 +6,14 @@ import kotlinx.html.TagConsumer
 import materialui.ButtonBase
 import materialui.components.StandardProps
 import materialui.components.buttonbase.enums.ButtonBaseStyle
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
-import react.RRef
+import react.Props
+import react.RefObject
 
 external interface ButtonBaseProps : StandardProps {
-    var buttonRef: RRef?
+    var buttonRef: RefObject<HTMLElement>?
     var centerRipple: Boolean?
     var disabled: Boolean?
     var disableRipple: Boolean?
@@ -20,7 +21,7 @@ external interface ButtonBaseProps : StandardProps {
     var focusRipple: Boolean?
     var focusVisibleClassName: String?
     var onFocusVisible: ((Event) -> Unit)?
-    var touchRippleProps: RProps?
+    var touchRippleProps: Props?
     var type: String?
 }
 

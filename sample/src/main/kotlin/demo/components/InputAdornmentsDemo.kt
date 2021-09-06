@@ -42,7 +42,7 @@ val DATA: Array<Person> = arrayOf(
     jsObject { name = "Madoka Higuchi"; age = 17 },
 )
 
-class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
+class InputAdornmentsDemo : RComponent<Props, InputAdornmentsState>() {
     override fun InputAdornmentsState.init() {
         amount = ""
         password = ""
@@ -193,7 +193,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     }
 }
 
-external interface InputAdornmentsState : RState {
+external interface InputAdornmentsState : State {
     var amount: String
     var password: String
     var weight: String

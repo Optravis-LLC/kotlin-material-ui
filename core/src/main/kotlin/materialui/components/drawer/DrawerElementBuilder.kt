@@ -12,24 +12,24 @@ import materialui.components.setValue
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.ComponentType
-import react.RProps
+import react.Props
 
-open class DrawerElementBuilder<Props: DrawerProps> internal constructor(
-    type: ComponentType<Props>,
+open class DrawerElementBuilder<P: DrawerProps> internal constructor(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<DIV,Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV,P>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<DrawerStyle, String>) {
         classes(classMap.toList())
     }
 
     var Tag.anchor: DrawerAnchor? by materialProps
-    var Tag.BackdropProps: RProps? by materialProps
+    var Tag.BackdropProps: Props? by materialProps
     var Tag.elevation: Number? by materialProps
-    var Tag.ModalProps: RProps? by materialProps
+    var Tag.ModalProps: Props? by materialProps
     var Tag.onClose: ((Event) -> Unit)? by materialProps
     var Tag.open: Boolean? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
-    var Tag.SlideProps: RProps? by materialProps
+    var Tag.PaperProps: Props? by materialProps
+    var Tag.SlideProps: Props? by materialProps
     var Tag.theme: MuiTheme? by materialProps
     var Tag.variant: DrawerVariant? by materialProps
 

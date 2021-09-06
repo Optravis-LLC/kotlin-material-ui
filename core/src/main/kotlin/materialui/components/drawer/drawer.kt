@@ -6,17 +6,17 @@ import materialui.components.drawer.enums.DrawerStyle
 import materialui.styles.muitheme.MuiTheme
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.Props
 
 external interface DrawerProps : StandardProps {
     var anchor: String?
-    var BackdropProps: RProps?
+    var BackdropProps: Props?
     var elevation: Number?
-    var ModalProps: RProps?
+    var ModalProps: Props?
     var onClose: ((Event) -> Unit)?
     var open: Boolean?
-    var PaperProps: RProps?
-    var SlideProps: RProps?
+    var PaperProps: Props?
+    var SlideProps: Props?
     var theme: MuiTheme?
     var transitionDuration: dynamic
     var variant: String?

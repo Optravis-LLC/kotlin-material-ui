@@ -8,13 +8,13 @@ import materialui.components.StandardProps
 import materialui.components.buttonbase.ButtonBaseProps
 import materialui.components.listitem.enums.ListItemStyle
 import react.RBuilder
-import react.RProps
+import react.Props
 
 external interface ListItemProps : StandardProps {
     var alignItems: String?
     var button: Boolean?
     var ContainerComponent: dynamic
-    var ContainerProps: RProps?
+    var ContainerProps: Props?
     var dense: Boolean?
     var disabled: Boolean?
     var disableGutters: Boolean?

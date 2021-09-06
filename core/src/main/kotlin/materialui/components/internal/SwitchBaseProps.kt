@@ -1,9 +1,10 @@
 package materialui.components.internal
 
 import materialui.components.StandardProps
-import react.RProps
-import react.RRef
+import org.w3c.dom.HTMLElement
+import react.Props
 import react.ReactElement
+import react.RefObject
 
 external interface SwitchBaseProps : StandardProps {
     var autoFocus: Boolean?
@@ -14,8 +15,8 @@ external interface SwitchBaseProps : StandardProps {
     var disableRipple: Boolean?
     var icon: ReactElement?
     var id: String?
-    var inputProps: RProps?
-    var inputRef: RRef?
+    var inputProps: Props?
+    var inputRef: RefObject<HTMLElement>?
     var name: String?
     var readOnly: Boolean?
     var required: Boolean?

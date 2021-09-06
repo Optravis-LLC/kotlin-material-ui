@@ -17,6 +17,7 @@ import materialui.components.select.select
 import materialui.components.set
 import materialui.components.setValue
 import materialui.components.textfield.enums.TextFieldSize
+import org.w3c.dom.HTMLElement
 import react.*
 import react.dom.setProp
 import kotlin.js.Date
@@ -30,17 +31,17 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.autoComplete: String? by materialProps
     var Tag.autoFocus: Boolean? by materialProps
     var Tag.defaultValue: Any? by materialProps
-    var Tag.FormHelperTextProps: RProps
+    var Tag.FormHelperTextProps: Props
         get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["FormHelperTextProps"]
         set(value) { setProp("FormHelperTextProps", value) }
     var Tag.helperText: ReactElement
         get() = @Suppress("UnsafeCastFromDynamic") domProps.asDynamic()["helperText"]
         set(value) { setProp("helperText", value) }
     var Tag.id: String? by materialProps
-    var Tag.InputLabelProps: RProps? by materialProps
-    var Tag.InputProps: RProps? by materialProps
-    var Tag.inputProps: RProps? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.InputLabelProps: Props? by materialProps
+    var Tag.InputProps: Props? by materialProps
+    var Tag.inputProps: Props? by materialProps
+    var Tag.inputRef: RefObject<HTMLElement>? by materialProps
     var Tag.label: ReactElement? by materialProps
     var Tag.multiline: Boolean? by materialProps
     var Tag.name: String? by materialProps
@@ -48,7 +49,7 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     var Tag.rows: Any? by materialProps
     var Tag.rowsMax: Any? by materialProps
     var Tag.select: Boolean? by materialProps
-    var Tag.SelectProps: RProps? by materialProps
+    var Tag.SelectProps: Props? by materialProps
     var Tag.size: TextFieldSize? // issue: Enum? problem with <reified T: Enum<T>> StandardProps.getValue()
         get() = materialProps.get<TextFieldSize>("size")
         set(value) { materialProps.set("size",value) }
@@ -61,13 +62,13 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
     fun Tag.defaultValue(v: Date) { defaultValue = v }
     fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
     fun Tag.inputLabelProps(block: InputLabelElementBuilder<LABEL>.() -> Unit) {
-        InputLabelProps = RBuilder().inputLabel(block = block).props
+        InputLabelProps = buildElement { inputLabel(block = block) }.props
     }
     fun <T2: Tag> Tag.inputLabelProps(factory: (TagConsumer<Unit>) -> T2, block: InputLabelElementBuilder<T2>.() -> Unit) {
-        InputLabelProps = RBuilder().inputLabel(factory = factory, block = block).props
+        InputLabelProps = buildElement { inputLabel(factory = factory, block = block) }.props
     }
     fun Tag.inputProps(block: InputElementBuilder<InputProps>.() -> Unit) {
-        InputProps = RBuilder().input(block = block).props
+        InputProps = buildElement { input(block = block) }.props
     }
     fun Tag.nativeInputProps(block: INPUT.() -> Unit) {
         val props = js {  }
@@ -77,11 +78,11 @@ class TextFieldElementBuilder<T: Tag> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as Props
     }
     fun Tag.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
     fun Tag.selectProps(block: SelectElementBuilder.() -> Unit) {
-        SelectProps = RBuilder().select(block = block).props
+        SelectProps = buildElement { select(block = block) }.props
     }
     fun Tag.rows(v: String) { materialProps.rows = v }
     fun Tag.rows(v: Number) { materialProps.rows = v }

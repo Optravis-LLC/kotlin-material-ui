@@ -14,15 +14,16 @@ import materialui.components.inputadornment.inputAdornment
 import materialui.components.inputbase.enums.InputBaseStyle
 import materialui.components.inputbase.enums.InputMargin
 import materialui.components.setValue
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import react.*
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
-open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
-    type: ComponentType<Props>,
+open class InputBaseElementBuilder<P: InputBaseProps> internal constructor(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, P>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<InputBaseStyle, String>) {
         classes(classMap.toList())
     }
@@ -35,8 +36,8 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     var Tag.error: Boolean? by materialProps
     var Tag.fullWidth: Boolean? by materialProps
     var Tag.id: String? by materialProps
-    var Tag.inputProps: RProps? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.inputProps: Props? by materialProps
+    var Tag.inputRef: RefObject<HTMLElement>? by materialProps
     var Tag.margin: InputMargin? by materialProps
     var Tag.multiline: Boolean? by materialProps
     var Tag.name: String? by materialProps
@@ -57,12 +58,12 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
     fun Tag.defaultValue(v: Date) { defaultValue = v }
     fun Tag.defaultValue(v: Color) { defaultValue = v.toString() }
     fun Tag.endAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        endAdornment = RBuilder().inputAdornment(block = block)
+        endAdornment = buildElement { inputAdornment(block = block) }
     }
-    fun <P: RProps, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
+    fun <P: Props, C: Component<P, *>> Tag.inputComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.inputComponent = kClass.js as RClass<P>
+        materialProps.inputComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.inputProps(block: INPUT.() -> Unit) {
         val props = js {  }
@@ -72,10 +73,10 @@ open class InputBaseElementBuilder<Props: InputBaseProps> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as Props
     }
     fun Tag.startAdornment(block: InputAdornmentElementBuilder<DIV>.() -> Unit) {
-        startAdornment = RBuilder().inputAdornment(block = block)
+        startAdornment = buildElement { inputAdornment(block = block) }
     }
     fun Tag.rows(v: String) { materialProps.rows = v }
     fun Tag.rows(v: Number) { materialProps.rows = v }

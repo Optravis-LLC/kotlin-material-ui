@@ -71,9 +71,9 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ThumbComponent(tagName: String) { ThumbComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.rClass }
+    fun <P: Props, C: Component<P, *>> Tag.ThumbComponent(kClass: KClass<C>) { ThumbComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.ThumbComponent(functionalComponent: FunctionComponent<P>) { ThumbComponent = functionalComponent }
+    fun <P: Props> Tag.ThumbComponent(functionalComponent: FunctionComponent<P>) { ThumbComponent = functionalComponent }
 
     var Tag.track: SliderTrack? by materialProps
     var Tag.value: Any? by materialProps
@@ -84,9 +84,9 @@ class SliderElementBuilder<T: Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.ValueLabelComponent(tagName: String) { ValueLabelComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.rClass }
+    fun <P: Props, C: Component<P, *>> Tag.ValueLabelComponent(kClass: KClass<C>) { ValueLabelComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.ValueLabelComponent(functionalComponent: FunctionComponent<P>) { ValueLabelComponent = functionalComponent }
+    fun <P: Props> Tag.ValueLabelComponent(functionalComponent: FunctionComponent<P>) { ValueLabelComponent = functionalComponent }
 
     var Tag.valueLabelDisplay: SliderValueLabelDisplay? by materialProps
     var Tag.valueLabelFormat: Any? by materialProps

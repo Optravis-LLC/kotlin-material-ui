@@ -3,6 +3,7 @@ package materialui.components.inputbase
 import materialui.InputBase
 import materialui.components.StandardProps
 import materialui.components.inputbase.enums.InputBaseStyle
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import react.*
 
@@ -16,8 +17,8 @@ external interface InputBaseProps : StandardProps {
     var fullWidth: Boolean?
     var id: String?
     var inputComponent: dynamic
-    var inputProps: RProps?
-    var inputRef: RRef?
+    var inputProps: Props?
+    var inputRef: RefObject<HTMLElement>?
     var margin: String?
     var muiFormControl: Any?
     var multiline: Boolean?

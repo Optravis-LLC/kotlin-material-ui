@@ -5,11 +5,11 @@ import materialui.components.StandardProps
 import materialui.components.modal.enums.ModalStyle
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.Props
 
 external interface ModalProps : StandardProps {
     var BackdropComponent: dynamic
-    var BackdropProps: RProps?
+    var BackdropProps: Props?
     var container: dynamic
     var disableAutoFocus: Boolean?
     var disableBackdropClick: Boolean?

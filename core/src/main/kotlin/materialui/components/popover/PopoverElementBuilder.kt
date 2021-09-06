@@ -21,10 +21,10 @@ import org.w3c.dom.events.EventTarget
 import react.*
 import kotlin.reflect.KClass
 
-open class PopoverElementBuilder<Props: PopoverProps>(
-    type: ComponentType<Props>,
+open class PopoverElementBuilder<P: PopoverProps>(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>
-) : ModalElementBuilder<Props>(type, classMap) {
+) : ModalElementBuilder<P>(type, classMap) {
     fun Tag.classes(vararg classMap: Pair<PopoverStyle, String>) {
         classes(classMap.toList())
     }
@@ -43,10 +43,10 @@ open class PopoverElementBuilder<Props: PopoverProps>(
     var Tag.onExit: ((Node) -> Unit)? by materialProps
     var Tag.onExited: ((Node) -> Unit)? by materialProps
     var Tag.onExiting: ((Node) -> Unit)? by materialProps
-    var Tag.PaperProps: RProps? by materialProps
+    var Tag.PaperProps: Props? by materialProps
     var Tag.transformOrigin: PopoverOrigin? by materialProps
     val Tag.transitionDuration: Any? by materialProps
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: Props? by materialProps
 
     fun Tag.action(actions: (PopoverActions) -> Unit) { action = actions }
     fun Tag.anchorEl(node: Node) { materialProps.anchorEl = node }
@@ -68,16 +68,16 @@ open class PopoverElementBuilder<Props: PopoverProps>(
         ModalClasses = classesObj as Any
     }
     fun Tag.paperProps(block: PaperElementBuilder<DIV, PaperProps>.() -> Unit) {
-        PaperProps = RBuilder().paper(block = block).props
+        PaperProps = buildElement { paper(block = block) }.props
     }
     fun <T: Tag, P: PaperProps> Tag.paperProps(factory: (TagConsumer<Unit>) -> T, block: PaperElementBuilder<T, P>.() -> Unit) {
-        PaperProps = RBuilder().paper(factory = factory, block = block).props
+        PaperProps = buildElement { paper(factory = factory, block = block) }.props
     }
     fun Tag.transformOrigin(block: PopoverOrigin.() -> Unit) { transformOrigin = jsObject(block) }
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+    fun <P: Props, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) {
         materialProps.TransitionComponent = tagName

@@ -29,8 +29,8 @@ class SnackbarElementBuilder internal constructor(
     var Tag.action: ReactElement? by materialProps
     var Tag.anchorOrigin: SnackbarOrigin? by materialProps
     var Tag.autoHideDuration: Number? by materialProps
-    var Tag.ClickAwayListenerProps: RProps? by materialProps
-    var Tag.ContentProps: RProps? by materialProps
+    var Tag.ClickAwayListenerProps: Props? by materialProps
+    var Tag.ContentProps: Props? by materialProps
     var Tag.disableWindowBlurListener: Boolean? by materialProps
     var Tag.key: Any? by materialProps
     var Tag.message: ReactElement? by materialProps
@@ -51,19 +51,19 @@ class SnackbarElementBuilder internal constructor(
     fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
     fun Tag.anchorOrigin(block: SnackbarOrigin.() -> Unit) { anchorOrigin = jsObject(block) }
     fun Tag.clickAwayListenerProps(block: ClickAwayListenerBuilder.() -> Unit) {
-        ClickAwayListenerProps = RBuilder().clickAwayListener(block).props
+        ClickAwayListenerProps = buildElement { clickAwayListener(block) }.props
     }
     fun Tag.contentProps(block: SnackbarContentElementBuilder<DIV>.() -> Unit) {
-        ContentProps = RBuilder().snackbarContent(block = block).props
+        ContentProps = buildElement { snackbarContent(block = block) }.props
     }
     fun <T: Tag> Tag.contentProps(factory: (TagConsumer<Unit>) -> T, block: SnackbarContentElementBuilder<T>.() -> Unit) {
-        ContentProps = RBuilder().snackbarContent(factory = factory, block = block).props
+        ContentProps = buildElement { snackbarContent(factory = factory, block = block) }.props
     }
     fun Tag.message(block: RBuilder.() -> Unit) { message = buildElement(block) }
-    fun <P: RProps, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
+    fun <P: Props, C: Component<P, *>> Tag.transitionComponent(kClass: KClass<C>) {
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
         @Suppress("UNCHECKED_CAST")
-        materialProps.TransitionComponent = kClass.js as RClass<P>
+        materialProps.TransitionComponent = kClass.js as ComponentClass<P>
     }
     fun Tag.transitionComponent(tagName: String) { materialProps.TransitionComponent = tagName }
     fun Tag.transitionDuration(msec: Long) { materialProps.transitionDuration = msec }

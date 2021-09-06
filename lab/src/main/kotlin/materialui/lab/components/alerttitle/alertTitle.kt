@@ -3,14 +3,14 @@ package materialui.lab.components.alerttitle
 import kotlinext.js.jsObject
 import react.ComponentType
 import react.RBuilder
-import react.RProps
+import react.Props
 import react.createElement
 
 @JsModule("@material-ui/lab/AlertTitle")
 @JsNonModule
 private external val alertTitleModule: dynamic
 
-external interface AlertTitleProps : RProps
+external interface AlertTitleProps : Props
 
 @Suppress("UnsafeCastFromDynamic")
 private val alertTitleComponent: ComponentType<AlertTitleProps> = alertTitleModule.default

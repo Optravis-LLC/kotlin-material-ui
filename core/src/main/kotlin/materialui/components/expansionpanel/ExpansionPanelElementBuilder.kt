@@ -9,7 +9,7 @@ import materialui.components.paper.PaperElementBuilder
 import materialui.components.setValue
 import org.w3c.dom.events.Event
 import react.ComponentType
-import react.RProps
+import react.Props
 
 class ExpansionPanelElementBuilder<T: Tag> internal constructor(
     type: ComponentType<ExpansionPanelProps>,
@@ -20,11 +20,11 @@ class ExpansionPanelElementBuilder<T: Tag> internal constructor(
         classes(classMap.toList())
     }
 
-    var Tag.TransitionProps: RProps by materialProps
+    var Tag.TransitionProps: Props by materialProps
     var Tag.defaultExpanded: Boolean? by materialProps
     var Tag.disabled: Boolean? by materialProps
     var Tag.expanded: Boolean? by materialProps
     var Tag.onChange: ((Event, Boolean) -> Unit)? by materialProps
 
-    fun <P: RProps> Tag.transitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
+    fun <P: Props> Tag.transitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
 }

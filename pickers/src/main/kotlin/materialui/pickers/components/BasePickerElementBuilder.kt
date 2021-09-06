@@ -14,84 +14,84 @@ import react.dom.input
 import kotlin.js.Date
 import kotlin.reflect.KClass
 
-abstract class BasePickerElementBuilder<Props: BasePickerProps> internal constructor(
-    private val type: ComponentType<Props>,
+abstract class BasePickerElementBuilder<BPProps: BasePickerProps> internal constructor(
+    private val type: ComponentType<BPProps>,
     className: String?,
-    props: Props = jsObject { }
-) : RElementBuilderImpl<Props>(props) {
+    props: BPProps = jsObject { }
+) : RElementBuilderImpl<BPProps>(props) {
     init { props.className = className }
 
     fun create() = createElement(type, attrs, *childList.toTypedArray())
 
-    fun Props.value(v: String?) { value = v }
-    fun Props.value(v: Number?) { value = v }
-    fun Props.value(v: Date?) { value = v }
+    fun BPProps.value(v: String?) { value = v }
+    fun BPProps.value(v: Number?) { value = v }
+    fun BPProps.value(v: Date?) { value = v }
 
-    fun Props.onChangeFunc(block: (Any, String?) -> Unit) { onChange = block }
-    fun Props.onAcceptFunc(block: (Any) -> Unit) { onAccept = block }
-    fun Props.onErrorFunc(block: (Any, Any) -> Unit) { onError = block }
-    fun Props.onOpenFunc(block: () -> Unit) { onOpen = block }
-    fun Props.onCloseFunc(block: () -> Unit) { onClose = block }
+    fun BPProps.onChangeFunc(block: (Any, String?) -> Unit) { onChange = block }
+    fun BPProps.onAcceptFunc(block: (Any) -> Unit) { onAccept = block }
+    fun BPProps.onErrorFunc(block: (Any, Any) -> Unit) { onError = block }
+    fun BPProps.onOpenFunc(block: () -> Unit) { onOpen = block }
+    fun BPProps.onCloseFunc(block: () -> Unit) { onClose = block }
 
-    fun Props.orientation(v: PickerOrientation?) { orientation = v?.name }
+    fun BPProps.orientation(v: PickerOrientation?) { orientation = v?.name }
 
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps, C: Component<P, *>> Props.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.rClass }
+    fun <P: ToolbarComponentProps, C: Component<P, *>> BPProps.ToolbarComponent(kClass: KClass<C>) { ToolbarComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: ToolbarComponentProps> Props.ToolbarComponent(functionalComponent: FunctionComponent<P>) { ToolbarComponent = functionalComponent }
+    fun <P: ToolbarComponentProps> BPProps.ToolbarComponent(functionalComponent: FunctionComponent<P>) { ToolbarComponent = functionalComponent }
 
-    fun Props.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
+    fun BPProps.toolbarTitle(block: RBuilder.() -> Unit) { toolbarTitle = buildElement(block) }
 
     /* DateValidationProps */
-    fun Props.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
-    fun Props.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
-    fun Props.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
+    fun BPProps.invalidDateMessage(block: RBuilder.() -> Unit) { invalidDateMessage = buildElement(block) }
+    fun BPProps.minDateMessage(block: RBuilder.() -> Unit) { minDateMessage = buildElement(block) }
+    fun BPProps.maxDateMessage(block: RBuilder.() -> Unit) { maxDateMessage = buildElement(block) }
 
     /* ExportedPickerProps */
-    fun Props.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
-    fun Props.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
+    fun BPProps.dateRangeIcon(block: RBuilder.() -> Unit) { dateRangeIcon = buildElement(block) }
+    fun BPProps.timeIcon(block: RBuilder.() -> Unit) { timeIcon = buildElement(block) }
 
     /* PickerWrapper */
-    fun Props.toggleMobileKeyboardView(block: () -> Unit) { toggleMobileKeyboardView = block }
+    fun BPProps.toggleMobileKeyboardView(block: () -> Unit) { toggleMobileKeyboardView = block }
 
     @Suppress("FunctionName")
-    fun Props.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
-    fun Props.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
+    fun BPProps.DateInputProps(block: DateInputProps.() -> Unit) { DateInputProps = jsObject(block) }
+    fun BPProps.onDateChange(block: (Any, String, Boolean) -> Unit) { onDateChange = block }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> BPProps.KeyboardDateInputComponent(kClass: KClass<C>) { KeyboardDateInputComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.KeyboardDateInputComponent(functionalComponent: FunctionComponent<P>) { KeyboardDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> BPProps.KeyboardDateInputComponent(functionalComponent: FunctionComponent<P>) { KeyboardDateInputComponent = functionalComponent }
 
     @Suppress("FunctionName")
-    fun <P: DateInputProps, C: Component<P, *>> Props.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.rClass }
+    fun <P: DateInputProps, C: Component<P, *>> BPProps.PureDateInputComponent(kClass: KClass<C>) { PureDateInputComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: DateInputProps> Props.PureDateInputComponent(functionalComponent: FunctionComponent<P>) { PureDateInputComponent = functionalComponent }
+    fun <P: DateInputProps> BPProps.PureDateInputComponent(functionalComponent: FunctionComponent<P>) { PureDateInputComponent = functionalComponent }
 
     /* TextFieldProps */
-    fun Props.defaultValue(v: String?) { defaultValue = v }
-    fun Props.defaultValue(v: Number?) { defaultValue = v }
-    fun Props.defaultValue(v: Date?) { defaultValue = v }
+    fun BPProps.defaultValue(v: String?) { defaultValue = v }
+    fun BPProps.defaultValue(v: Number?) { defaultValue = v }
+    fun BPProps.defaultValue(v: Date?) { defaultValue = v }
 
     @Suppress("FunctionName")
-    fun Props.FormHelperTextProps(block: FormHelperTextProps.() -> Unit) { FormHelperTextProps = jsObject(block) }
-    fun Props.helperText(block: RBuilder.() -> Unit) { helperText = buildElement(block) }
+    fun BPProps.FormHelperTextProps(block: FormHelperTextProps.() -> Unit) { FormHelperTextProps = jsObject(block) }
+    fun BPProps.helperText(block: RBuilder.() -> Unit) { helperText = buildElement(block) }
 
     @Suppress("FunctionName")
-    fun Props.InputLabelProps(block: InputLabelProps.() -> Unit) { InputLabelProps = jsObject(block) }
+    fun BPProps.InputLabelProps(block: InputLabelProps.() -> Unit) { InputLabelProps = jsObject(block) }
 
     @Suppress("FunctionName")
-    fun Props.InputProps(block: InputProps.() -> Unit) { InputProps = jsObject(block) }
-    fun Props.inputProps(block: INPUT.() -> Unit) { inputProps = RDOMBuilderImpl { INPUT(mapOf(), it) }.input { attrs(block) }.props }
+    fun BPProps.InputProps(block: InputProps.() -> Unit) { InputProps = jsObject(block) }
+    fun BPProps.inputProps(block: INPUT.() -> Unit) { inputProps = buildElement(RDOMBuilderImpl { INPUT(mapOf(), it) }) { input { attrs(block) }}.props }
 
-    fun Props.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
+    fun BPProps.label(block: RBuilder.() -> Unit) { label = buildElement(block) }
 
-    fun Props.rows(v: String) { rows = v }
-    fun Props.rows(v: Number) { rows = v }
+    fun BPProps.rows(v: String) { rows = v }
+    fun BPProps.rows(v: Number) { rows = v }
 
-    fun Props.rowsMax(v: String) { rowsMax = v }
-    fun Props.rowsMax(v: Number) { rowsMax = v }
+    fun BPProps.rowsMax(v: String) { rowsMax = v }
+    fun BPProps.rowsMax(v: Number) { rowsMax = v }
 
     @Suppress("FunctionName")
-    fun Props.SelectProps(block: SelectProps.() -> Unit) { SelectProps = jsObject(block) }
+    fun BPProps.SelectProps(block: SelectProps.() -> Unit) { SelectProps = jsObject(block) }
 }

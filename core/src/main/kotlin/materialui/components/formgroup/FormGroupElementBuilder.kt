@@ -8,10 +8,10 @@ import materialui.components.getValue
 import materialui.components.setValue
 import react.ComponentType
 
-open class FormGroupElementBuilder<Props: FormGroupProps> internal constructor(
-    type: ComponentType<Props>,
+open class FormGroupElementBuilder<P: FormGroupProps> internal constructor(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<DIV, Props>(type, classMap, { DIV(mapOf(), it) }) {
+) : MaterialElementBuilder<DIV, P>(type, classMap, { DIV(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<FormGroupStyle, String>) {
         classes(classMap.toList())
     }

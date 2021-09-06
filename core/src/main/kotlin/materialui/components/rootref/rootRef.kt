@@ -1,10 +1,11 @@
 package materialui.components.rootref
 
 import materialui.RootRef
+import org.w3c.dom.HTMLElement
 import react.*
 
-external interface RootRefProps : RProps {
-    var rootRef: RRef?
+external interface RootRefProps : Props {
+    var rootRef: RefObject<HTMLElement>?
 }
 
 fun RBuilder.rootRef(block: RootRefElementBuilder.() -> Unit)

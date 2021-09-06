@@ -19,14 +19,14 @@ class ExpansionPanelSummaryElementBuilder<T: Tag> internal constructor(
 
     var Tag.expanded: Boolean? by materialProps
     var Tag.expandIcon: ReactElement? by materialProps
-    var Tag.IconButtonProps: RProps? by materialProps
+    var Tag.IconButtonProps: Props? by materialProps
 
     fun Tag.expandIcon(block: RBuilder.() -> Unit) { expandIcon = buildElement(block) }
     fun Tag.iconButtonProps(block: IconButtonElementBuilder<BUTTON>.() -> Unit) {
-        IconButtonProps = RBuilder().iconButton(block = block).props
+        IconButtonProps = buildElement { iconButton(block = block) }.props
     }
     fun <T2: Tag> Tag.iconButtonProps(factory: (TagConsumer<Unit>) -> T2, block: IconButtonElementBuilder<T2>.() -> Unit) {
-        IconButtonProps = RBuilder().iconButton(factory = factory, block = block).props
+        IconButtonProps = buildElement { iconButton(factory = factory, block = block) }.props
     }
-    fun <P: RProps> Tag.iconButtonProps(block: P.() -> Unit) { IconButtonProps = jsObject(block) }
+    fun <P: Props> Tag.iconButtonProps(block: P.() -> Unit) { IconButtonProps = jsObject(block) }
 }
