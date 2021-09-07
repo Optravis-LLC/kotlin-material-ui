@@ -14,11 +14,11 @@ import react.ComponentType
 import react.Props
 import react.RefObject
 
-open class ButtonBaseElementBuilder<T: Tag, Props: ButtonBaseProps>(
-    type: ComponentType<Props>,
+open class ButtonBaseElementBuilder<T: Tag, P: ButtonBaseProps>(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
-) : MaterialElementBuilder<T, Props>(type, classMap, factory) {
+) : MaterialElementBuilder<T, P>(type, classMap, factory) {
     fun Tag.classes(vararg classMap: Pair<ButtonBaseStyle, String>) {
         classes(classMap.map { it.first to it.second })
     }
