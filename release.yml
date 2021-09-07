@@ -9,6 +9,6 @@ hooks:
   verify:
     - ./gradlew check
   prepare:
-    - "sed -i 's/packages\.version.*=.*\".*\"/packages.version=\"{{version}}\"/g' gradle.properties"
+    - "sed -i 's/packages.version.*=.*\".*\"/packages.version=\"{{version}}\"/g' gradle.properties"
   publish:
     - ./gradlew publish
