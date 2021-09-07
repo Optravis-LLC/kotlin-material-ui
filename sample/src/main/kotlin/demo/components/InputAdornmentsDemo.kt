@@ -142,6 +142,7 @@ class InputAdornmentsDemo : RComponent<Props, InputAdornmentsState>() {
                     }
                 }
 
+
                 autoComplete<Person> {
                     attrs.options = DATA
                     attrs.getOptionLabel = { it.name }
@@ -152,11 +153,13 @@ class InputAdornmentsDemo : RComponent<Props, InputAdornmentsState>() {
                                     icon { +"person" }
                                 }
                             }
-                        textField {
-                            props(it.getTextFieldProps())
-                            attrs.classes("$marginStyle $textFieldStyle")
-                            attrs.label { +"Autocomplete Person" }
-                            attrs.variant = FormControlVariant.outlined
+                        buildElement {
+                            textField {
+                                props(it.getTextFieldProps())
+                                attrs.classes("$marginStyle $textFieldStyle")
+                                attrs.label { +"Autocomplete Person" }
+                                attrs.variant = FormControlVariant.outlined
+                            }
                         }
                     }
                 }
