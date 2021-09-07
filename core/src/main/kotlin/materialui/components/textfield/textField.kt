@@ -9,6 +9,7 @@ import materialui.components.formhelpertext.FormHelperTextProps
 import materialui.components.input.InputProps
 import materialui.components.inputlabel.InputLabelProps
 import materialui.components.select.SelectProps
+import org.w3c.dom.HTMLElement
 import react.*
 
 external interface TextFieldProps : FormControlProps {
@@ -21,7 +22,7 @@ external interface TextFieldProps : FormControlProps {
     var InputLabelProps: InputLabelProps?
     var InputProps: InputProps?
     var inputProps: Any?
-    var inputRef: RRef?
+    var inputRef: RefObject<HTMLElement>?
     var label: ReactElement?
     var multiline: Boolean?
     var name: String?

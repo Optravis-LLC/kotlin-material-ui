@@ -7,7 +7,7 @@ import materialui.CardHeader
 import materialui.components.StandardProps
 import materialui.components.cardheader.enums.CardHeaderStyle
 import react.RBuilder
-import react.RProps
+import react.Props
 import react.ReactElement
 
 external interface CardHeaderProps : StandardProps {
@@ -15,9 +15,9 @@ external interface CardHeaderProps : StandardProps {
     var avatar: ReactElement?
     var disableTypography: Boolean?
     var subheader: ReactElement?
-    var subheaderTypographyProps: RProps?
+    var subheaderTypographyProps: Props?
     var title: ReactElement?
-    var titleTypographyProps: RProps?
+    var titleTypographyProps: Props?
 }
 
 fun RBuilder.cardHeader(vararg classMap: Pair<CardHeaderStyle, String>, block: CardHeaderElementBuilder<DIV>.() -> Unit)

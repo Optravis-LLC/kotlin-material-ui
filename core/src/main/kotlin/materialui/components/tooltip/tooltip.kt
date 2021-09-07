@@ -6,8 +6,8 @@ import materialui.components.tooltip.enums.TooltipPlacement
 import materialui.components.tooltip.enums.TooltipStyle
 import materialui.reacttransiton.RTransitionProps
 import org.w3c.dom.events.Event
+import react.Props
 import react.RBuilder
-import react.RProps
 import react.ReactElement
 
 external interface TooltipProps : StandardProps {
@@ -23,7 +23,7 @@ external interface TooltipProps : StandardProps {
     var onClose: ((Event) -> Unit)?
     var onOpen: ((Event) -> Unit)?
     var open: Boolean?
-    var PopperProps: RProps?
+    var PopperProps: Props?
     var theme: Any?
     var title: ReactElement?
     var TransitionComponent: dynamic

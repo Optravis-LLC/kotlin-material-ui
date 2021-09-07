@@ -14,7 +14,7 @@ import materialui.components.typography.typography
 import react.*
 
 class CardHeaderElementBuilder<T: Tag> internal constructor(
-    type: RClass<CardHeaderProps>,
+    type: ComponentType<CardHeaderProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, CardHeaderProps>(type, classMap, factory) {
@@ -26,9 +26,9 @@ class CardHeaderElementBuilder<T: Tag> internal constructor(
     var Tag.avatar: ReactElement? by materialProps
     var Tag.disableTypography: Boolean? by materialProps
     var Tag.subheader: ReactElement? by materialProps
-    var Tag.subheaderTypographyProps: RProps? by materialProps
+    var Tag.subheaderTypographyProps: Props? by materialProps
     var Tag.title: ReactElement? by materialProps
-    var Tag.titleTypographyProps: RProps? by materialProps
+    var Tag.titleTypographyProps: Props? by materialProps
 
     fun Tag.action(block: RBuilder.() -> Unit) { action = buildElement(block) }
     fun Tag.avatar(block: RBuilder.() -> Unit) { avatar = buildElement(block) }
@@ -36,15 +36,15 @@ class CardHeaderElementBuilder<T: Tag> internal constructor(
     fun Tag.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
 
     fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        subheaderTypographyProps = RBuilder().typography(block = block).props
+        subheaderTypographyProps = buildElement { typography(block = block) }.props
     }
     fun Tag.subheaderTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
-        subheaderTypographyProps = RBuilder().typography(p = true, block = block).props
+        subheaderTypographyProps = buildElement { typography(p = true, block = block) }.props
     }
     fun Tag.titleTypographyProps(block: TypographyElementBuilder<SPAN, TypographyProps>.() -> Unit) {
-        titleTypographyProps = RBuilder().typography(block = block).props
+        titleTypographyProps = buildElement { typography(block = block) }.props
     }
     fun Tag.titleTypographyProps(block: TypographyElementBuilder<P, TypographyProps>.() -> Unit) {
-        titleTypographyProps = RBuilder().typography(p = true, block = block).props
+        titleTypographyProps = buildElement { typography(p = true, block = block) }.props
     }
 }

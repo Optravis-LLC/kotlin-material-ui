@@ -13,7 +13,7 @@ import react.dom.tag
 import kotlin.reflect.KClass
 
 class TreeItemElementBuilder<T : Tag> internal constructor(
-    type: RClass<TreeItemProps>,
+    type: ComponentType<TreeItemProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, TreeItemProps>(type, classMap, factory) {
@@ -28,7 +28,7 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     var Tag.label: ReactElement? by materialProps
     var Tag.nodeId: String? by materialProps
     @Suppress("PropertyName")
-    var Tag.TransitionProps: RProps? by materialProps
+    var Tag.TransitionProps: Props? by materialProps
     @Suppress("PropertyName")
     var Tag.TransitionComponent: Any? by materialProps
 
@@ -41,10 +41,10 @@ class TreeItemElementBuilder<T : Tag> internal constructor(
     @Suppress("FunctionName")
     fun Tag.TransitionComponent(tagName: String) { TransitionComponent = tagName }
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Tag.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.rClass }
+    fun <P: Props, C: Component<P, *>> Tag.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.react }
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.TransitionComponent(functionalComponent: FunctionalComponent<P>) { TransitionComponent = functionalComponent }
+    fun <P: Props> Tag.TransitionComponent(functionalComponent: FunctionComponent<P>) { TransitionComponent = functionalComponent }
 
     @Suppress("FunctionName")
-    fun <P: RProps> Tag.TransitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
+    fun <P: Props> Tag.TransitionProps(block: P.() -> Unit) { TransitionProps = jsObject(block) }
 }

@@ -8,10 +8,10 @@ import materialui.components.expansionpanel.enums.ExpansionPanelStyle
 import materialui.components.paper.PaperProps
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.Props
 
 external interface ExpansionPanelProps : PaperProps {
-    var TransitionProps: RProps?
+    var TransitionProps: Props?
     var defaultExpand: Boolean?
     var disabled: Boolean?
     var expanded: Boolean?

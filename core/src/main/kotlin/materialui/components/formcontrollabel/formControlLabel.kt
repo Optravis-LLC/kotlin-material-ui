@@ -3,6 +3,7 @@ package materialui.components.formcontrollabel
 import materialui.FormControlLabel
 import materialui.components.StandardProps
 import materialui.components.formcontrollabel.enums.FormControlLabelStyle
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import react.*
 
@@ -10,7 +11,7 @@ external interface FormControlLabelProps : StandardProps {
     var checked: Any?
     var control: ReactElement?
     var disabled: Boolean?
-    var inputRef: RRef?
+    var inputRef: RefObject<HTMLElement>?
     var label: ReactElement?
     var labelPlacement: String?
     var name: String?

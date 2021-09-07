@@ -4,9 +4,9 @@ import materialui.Slide
 import materialui.reacttransiton.RTransitionProps
 import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RProps
+import react.Props
 
-external interface SlideProps : RTransitionProps, RProps {
+external interface SlideProps : RTransitionProps, Props {
     var style: Any?
     var theme: MuiTheme?
 }

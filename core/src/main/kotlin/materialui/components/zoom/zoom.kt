@@ -4,9 +4,9 @@ import materialui.Zoom
 import materialui.reacttransiton.RTransitionProps
 import materialui.styles.muitheme.MuiTheme
 import react.RBuilder
-import react.RProps
+import react.Props
 
-external interface ZoomProps : RTransitionProps, RProps {
+external interface ZoomProps : RTransitionProps, Props {
     var style: Any?
     var theme: MuiTheme?
 }

@@ -11,20 +11,20 @@ import materialui.components.setValue
 import react.*
 
 class MobileStepperElementBuilder<T: Tag> internal constructor(
-    type: RClass<MobileStepperProps>,
+    type: ComponentType<MobileStepperProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : PaperElementBuilder<T, MobileStepperProps>(type, classMap, factory) {
 
     var Tag.activeStep: Number? by materialProps
     var Tag.backButton: ReactElement? by materialProps
-    var Tag.LinearProgressProps: RProps? by materialProps
+    var Tag.LinearProgressProps: Props? by materialProps
     var Tag.nextButton: ReactElement? by materialProps
     var Tag.position: MobileStepperPosition? by materialProps
     var Tag.steps: Number? by materialProps
     var Tag.variant: MobileStepperVariant? by materialProps
 
     fun Tag.backButton(block: RBuilder.() -> Unit) { backButton = buildElement(block) }
-    fun <P: RProps> Tag.linearProgressProps(block: P.() -> Unit) { LinearProgressProps = jsObject(block) }
+    fun <P: Props> Tag.linearProgressProps(block: P.() -> Unit) { LinearProgressProps = jsObject(block) }
     fun Tag.nextButton(block: RBuilder.() -> Unit) { nextButton = buildElement(block) }
 }

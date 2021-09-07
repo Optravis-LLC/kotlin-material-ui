@@ -8,15 +8,15 @@ import materialui.components.snackbar.enums.SnackbarStyle
 import materialui.reacttransiton.RTransitionHandlerProps
 import materialui.reacttransiton.RTransitionProps
 import react.RBuilder
-import react.RProps
+import react.Props
 import react.ReactElement
 
 external interface SnackbarProps : RTransitionHandlerProps, StandardProps {
     var action: ReactElement?
     var anchorOrigin: SnackbarOrigin?
     var autoHideDuration: Number?
-    var ClickAwayListenerProps: RProps?
-    var ContentProps: RProps?
+    var ClickAwayListenerProps: Props?
+    var ContentProps: Props?
     var disableWindowBlurListener: Boolean?
     var key: Any?
     var message: ReactElement?

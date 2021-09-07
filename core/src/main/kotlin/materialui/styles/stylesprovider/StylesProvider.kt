@@ -6,12 +6,12 @@ import materialui.ThemeProvider
 import materialui.styles.muitheme.MuiTheme
 import materialui.styles.themeprovider.ThemeProviderBuilder
 import react.RBuilder
-import react.RProps
+import react.Props
 
 typealias GenerateId = Object
 typealias Jss = Object
 
-external interface StylesProviderProps: RProps{
+external interface StylesProviderProps: Props{
     var disableGeneration: Boolean?
     var generateClassName: GenerateId?
     var injectFirst: Boolean?

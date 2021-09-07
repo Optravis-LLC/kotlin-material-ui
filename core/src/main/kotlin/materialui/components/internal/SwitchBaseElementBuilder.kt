@@ -9,12 +9,13 @@ import kotlinx.html.stream.createHTML
 import materialui.components.MaterialElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
+import org.w3c.dom.HTMLElement
 import react.*
 
-abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constructor(
-    type: RClass<Props>,
+abstract class SwitchBaseElementBuilder<P: SwitchBaseProps> internal constructor(
+    type: ComponentType<P>,
     classMap: List<Pair<Enum<*>, String>>
-) : MaterialElementBuilder<SPAN, Props>(type, classMap, { SPAN(mapOf(), it) }) {
+) : MaterialElementBuilder<SPAN, P>(type, classMap, { SPAN(mapOf(), it) }) {
 
     var Tag.autoFocus: Boolean? by materialProps
     var Tag.checked: Boolean? by materialProps
@@ -24,8 +25,8 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
     var Tag.disableRipple: Boolean? by materialProps
     var Tag.icon: ReactElement? by materialProps
     var Tag.id: String? by materialProps
-    var Tag.inputProps: RProps? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.inputProps: Props? by materialProps
+    var Tag.inputRef: RefObject<HTMLElement>? by materialProps
     var Tag.name: String? by materialProps
     var Tag.readOnly: Boolean? by materialProps
     var Tag.required: Boolean? by materialProps
@@ -42,6 +43,6 @@ abstract class SwitchBaseElementBuilder<Props: SwitchBaseProps> internal constru
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        inputProps = props as RProps
+        inputProps = props as Props
     }
 }

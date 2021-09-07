@@ -9,6 +9,7 @@ import materialui.components.StandardProps
 import materialui.components.textfield.TextFieldProps
 import materialui.lab.components.autocomplete.enums.AutocompleteStyle
 import materialui.lab.components.useautocomplete.UseAutocompleteProps
+import org.w3c.dom.HTMLElement
 import react.*
 
 @JsModule("@material-ui/lab/Autocomplete")
@@ -40,7 +41,7 @@ external interface AutocompleteProps<T> : UseAutocompleteProps<T>, StandardProps
     var renderGroup: ((params: AutocompleteRenderGroupParams) -> dynamic)?
     var renderInput: (params: AutocompleteRenderInputParams) -> dynamic
     var renderOption: ((option: T, state: AutocompleteRenderOptionState) -> dynamic)?
-    var renderTags: ((value: Array<T>, (Int) -> RProps) -> dynamic)?
+    var renderTags: ((value: Array<T>, (Int) -> Props) -> dynamic)?
     var size: String? /* 'small' | 'medium' */
 }
 
@@ -55,13 +56,13 @@ external interface AutocompleteRenderInputParams {
     var disabled: Boolean
     var fullWidth: Boolean
     var size: String?
-    var InputLabelProps: RProps?
+    var InputLabelProps: Props?
     var InputProps: AutocompleteInputProps
-    var inputProps: RProps
+    var inputProps: Props
 }
 
-external interface AutocompleteInputProps: RProps{
-    val ref: RRef
+external interface AutocompleteInputProps: Props{
+    val ref: RefObject<HTMLElement>
     var className: String
     var startAdornment: ReactElement
     var endAdornment: ReactElement
@@ -73,7 +74,7 @@ external interface AutocompleteRenderOptionState {
 }
 
 @Suppress("UnsafeCastFromDynamic")
-private val autocompleteComponent: RClass<AutocompleteProps<*>> = autocompleteModule.default
+private val autocompleteComponent: ComponentClass<AutocompleteProps<*>> = autocompleteModule.default
 
 fun <O: Any> RBuilder.autoComplete(vararg classMap: Pair<AutocompleteStyle, String>, block: AutocompleteElementBuilder<DIV ,O>.() -> Unit)
         = child(AutocompleteElementBuilder<DIV ,O>(autocompleteComponent, classMap.toList()) { DIV(mapOf(), it) }.apply(block).create())

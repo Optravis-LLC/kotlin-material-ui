@@ -1,5 +1,5 @@
-group = Packages.group
-version = Packages.version
+group = groupId
+version = libraryVersion
 
 plugins {
     kotlin("js")
@@ -7,13 +7,14 @@ plugins {
 }
 
 dependencies {
-    api(Libraries.Kotlin.html)
-    api(Libraries.Kotlin.react)
-    api(Libraries.Kotlin.reactDom)
-    api(Libraries.Kotlin.css)
-    api(Libraries.Kotlin.extensions)
+    val wrappers = Libraries.JsWrappers(kotlinVersion)
+    api(wrappers.html)
+    api(wrappers.react)
+    api(wrappers.reactDom)
+    api(wrappers.css)
+    api(wrappers.extensions)
 
     api(npm("@material-ui/core", Libraries.Npm.MaterialUi.core))
 
-    testImplementation(Libraries.Kotlin.jsTest)
+    testImplementation(kotlinTestJs)
 }

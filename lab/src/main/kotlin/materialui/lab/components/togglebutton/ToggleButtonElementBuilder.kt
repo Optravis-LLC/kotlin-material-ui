@@ -6,10 +6,10 @@ import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
 import materialui.lab.components.togglebutton.enums.ToggleButtonStyle
-import react.RClass
+import react.ComponentType
 
 class ToggleButtonElementBuilder<T: Tag> internal constructor(
-    type: RClass<ToggleButtonProps>,
+    type: ComponentType<ToggleButtonProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, ToggleButtonProps>(type, classMap, factory) {
@@ -18,6 +18,6 @@ class ToggleButtonElementBuilder<T: Tag> internal constructor(
     }
 
     var Tag.disableFocusRipple: Boolean? by materialProps
-    var selected: Boolean? by materialProps
-    var value: Any? by materialProps
+    var Tag.selected: Boolean? by materialProps
+    var Tag.value: Any? by materialProps
 }

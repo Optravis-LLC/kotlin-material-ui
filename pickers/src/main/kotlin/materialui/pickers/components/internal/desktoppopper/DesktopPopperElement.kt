@@ -2,25 +2,22 @@ package materialui.pickers.components.internal.desktoppopper
 
 import kotlinext.js.jsObject
 import materialui.components.popper.PopperProps
-import react.Component
-import react.FunctionalComponent
-import react.RProps
-import react.rClass
+import react.*
 import kotlin.reflect.KClass
 
-interface DesktopPopperElement<Props: DesktopPopperWrapperProps> {
+interface DesktopPopperElement<DPWProps: DesktopPopperWrapperProps> {
     @Suppress("FunctionName")
-    fun Props.PopperProps(block: PopperProps.() -> Unit)
+    fun DPWProps.PopperProps(block: PopperProps.() -> Unit)
 
     @Suppress("FunctionName")
-    fun <P: RProps, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>)
+    fun <P: Props, C: Component<P, *>> DPWProps.TransitionComponent(kClass: KClass<C>)
     @Suppress("FunctionName")
-    fun <P: RProps> Props.TransitionComponent(functionalComponent: FunctionalComponent<P>)
+    fun <P: Props> DPWProps.TransitionComponent(functionalComponent: FunctionComponent<P>)
 }
 
-internal class DesktopPopperDelegate<Props: DesktopPopperWrapperProps> : DesktopPopperElement<Props> {
-    override fun Props.PopperProps(block: PopperProps.() -> Unit) { PopperProps = jsObject(block) }
+internal class DesktopPopperDelegate<DPWProps: DesktopPopperWrapperProps> : DesktopPopperElement<DPWProps> {
+    override fun DPWProps.PopperProps(block: PopperProps.() -> Unit) { PopperProps = jsObject(block) }
 
-    override fun <P: RProps, C: Component<P, *>> Props.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.rClass }
-    override fun <P: RProps> Props.TransitionComponent(functionalComponent: FunctionalComponent<P>) { TransitionComponent = functionalComponent }
+    override fun <P: Props, C: Component<P, *>> DPWProps.TransitionComponent(kClass: KClass<C>) { TransitionComponent = kClass.react }
+    override fun <P: Props> DPWProps.TransitionComponent(functionalComponent: FunctionComponent<P>) { TransitionComponent = functionalComponent }
 }

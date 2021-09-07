@@ -3,9 +3,9 @@ package materialui.lab.components.useautocomplete
 import kotlinext.js.jsObject
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
-import react.RProps
+import react.Props
 
-external interface UseAutocompleteProps<T>: RProps {
+external interface UseAutocompleteProps<T>: Props {
     var autoComplete: Boolean?
     var autoHighlight: Boolean?
     var autoSelect: Boolean?
@@ -78,14 +78,14 @@ external interface GetOptionPropsParams<T> {
 }
 
 external interface UseAutocompleteInterface<T> {
-    fun getRootProps(): RProps
-    fun getInputProps(): RProps
-    fun getInputLabelProps(): RProps
-    fun getClearProps(): RProps
-    fun getPopupIndicatorProps(): RProps
-    fun getTagProps(params: GetTagPropsParams): RProps
-    fun getListboxProps(): RProps
-    fun getOptionProps(params: GetOptionPropsParams<T>): RProps
+    fun getRootProps(): Props
+    fun getInputProps(): Props
+    fun getInputLabelProps(): Props
+    fun getClearProps(): Props
+    fun getPopupIndicatorProps(): Props
+    fun getTagProps(params: GetTagPropsParams): Props
+    fun getListboxProps(): Props
+    fun getOptionProps(params: GetOptionPropsParams<T>): Props
     val id: String
     val inputValue: String
     val value: dynamic

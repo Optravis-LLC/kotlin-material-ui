@@ -9,9 +9,9 @@ external interface ListItemTextProps : StandardProps {
     var disableTypography: Boolean?
     var inset: Boolean?
     var primary: ReactElement?
-    var primaryTypographyProps: RProps?
+    var primaryTypographyProps: Props?
     var secondary: ReactElement?
-    var secondaryTypographyProps: RProps?
+    var secondaryTypographyProps: Props?
     var theme: Any?
 }
 

@@ -1,7 +1,7 @@
 package materialui
 
-import react.RClass
-import react.RProps
+import react.RComponent
+import react.Props
 
-internal typealias MakeStyles = (RProps) -> dynamic
-internal typealias WithStyles = (Any) -> RClass<dynamic>
+internal typealias MakeStyles = (Props) -> dynamic
+internal typealias WithStyles = (Any) -> RComponent<dynamic, dynamic>

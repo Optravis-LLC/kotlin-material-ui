@@ -1,14 +1,12 @@
 package materialui.components.rootref
 
 import kotlinext.js.jsObject
-import react.RBuilder
-import react.RClass
-import react.createElement
+import react.*
 
 class RootRefElementBuilder internal constructor(
-    val type: RClass<RootRefProps>,
+    val type: ComponentType<RootRefProps>,
     private val props: RootRefProps = jsObject { }
-) : RBuilder() {
+) : RBuilderImpl() {
     fun attrs(handler: RootRefProps.() -> Unit) {
         props.handler()
     }

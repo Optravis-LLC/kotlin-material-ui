@@ -3,9 +3,9 @@ package materialui.components.clickawaylistener
 import materialui.ClickAwayListener
 import org.w3c.dom.events.Event
 import react.RBuilder
-import react.RProps
+import react.Props
 
-external interface ClickAwayListenerProps : RProps {
+external interface ClickAwayListenerProps : Props {
     var mouseEvent: dynamic
     var onClickAway: ((Event) -> Unit)?
     var touchEvent: dynamic

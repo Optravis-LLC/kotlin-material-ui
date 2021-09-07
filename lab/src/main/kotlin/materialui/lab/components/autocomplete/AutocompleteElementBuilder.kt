@@ -20,7 +20,7 @@ import kotlin.js.Date
 import kotlin.reflect.KClass
 
 class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
-    type: RClass<AutocompleteProps<O>>,
+    type: ComponentClass<AutocompleteProps<O>>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, AutocompleteProps<O>>(type, classMap, factory) {
@@ -63,7 +63,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     var Tag.defaultValue: Any? by materialProps
     var Tag.onChange: ((event: Event, value: dynamic, reason: AutocompleteChangeReason, details: AutocompleteChangeDetails<O>) -> Unit)? by materialProps
     
-    var Tag.ChipProps: RProps? by materialProps
+    var Tag.ChipProps: Props? by materialProps
     var Tag.closeIcon: ReactElement by materialProps
     var Tag.clearText: String? by materialProps
     var Tag.closeText: String? by materialProps
@@ -80,7 +80,7 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     var Tag.renderGroup: ((params: AutocompleteRenderGroupParams) -> dynamic)? by materialProps
     var Tag.renderInput: (params: AutocompleteRenderInputParams) -> dynamic by materialProps
     var Tag.renderOption: ((option: T, state: AutocompleteRenderOptionState) -> dynamic)? by materialProps
-    var Tag.renderTags: ((value: Array<T>, (Int) -> RProps) -> dynamic)? by materialProps
+    var Tag.renderTags: ((value: Array<T>, (Int) -> Props) -> dynamic)? by materialProps
     var Tag.size: TextFieldSize? // issue: Enum? problem with <reified T: Enum<T>> StandardProps.getValue()
         get() = materialProps.get<TextFieldSize>("size")
         set(value) { materialProps.set("size",value) }
@@ -100,19 +100,19 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         }
     }
     fun Tag.chipProps(block: ChipElementBuilder<DIV>.() -> Unit){
-        ChipProps = RBuilder().chip(block = block).props
+        ChipProps = buildElement { chip(block = block) }.props
     }
     fun <T2: Tag> Tag.chipProps(factory: (TagConsumer<Unit>) -> T2,block: ChipElementBuilder<T2>.() -> Unit){
-        ChipProps = RBuilder().chip(factory = factory,block = block).props
+        ChipProps = buildElement { chip(factory = factory,block = block) }.props
     }
 
     fun Tag.closeIcon(block: RBuilder.()->Unit) { closeIcon = buildElement(block) }
 
-    fun <P: RProps> Tag.listBoxComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.ListboxComponent = kClass.rClass
+    fun <P: Props> Tag.listBoxComponent(kClass: KClass<out Component<P, *>>) {
+        materialProps.ListboxComponent = kClass.react
     }
 
-    fun <P: RProps> Tag.listBoxComponent(fc: FunctionalComponent<P>) {
+    fun <P: Props> Tag.listBoxComponent(fc: FunctionComponent<P>) {
         materialProps.ListboxComponent = fc
     }
     fun Tag.listBoxComponent(tagName: String) {
@@ -125,11 +125,11 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
     fun Tag.loadingText(block: RBuilder.()->Unit) { loadingText = buildElement(block) }
     fun Tag.noOptionsText(block: RBuilder.()->Unit) { noOptionsText = buildElement(block) }
 
-    fun <P: RProps> Tag.paperComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.PaperComponent = kClass.rClass
+    fun <P: Props> Tag.paperComponent(kClass: KClass<out Component<P, *>>) {
+        materialProps.PaperComponent = kClass.react
     }
 
-    fun <P: RProps> Tag.paperComponent(fc: FunctionalComponent<P>) {
+    fun <P: Props> Tag.paperComponent(fc: FunctionComponent<P>) {
         materialProps.PaperComponent = fc
     }
 
@@ -137,10 +137,10 @@ class AutocompleteElementBuilder<T: Tag ,O: Any> internal constructor(
         materialProps.PaperComponent = tagName
     }
     fun <P: PopperProps> Tag.popperComponent(kClass: KClass<out Component<P, *>>) {
-        materialProps.PopperComponent = kClass.rClass
+        materialProps.PopperComponent = kClass.react
     }
 
-    fun <P: PopperProps> Tag.popperComponent(fc: FunctionalComponent<P>) {
+    fun <P: PopperProps> Tag.popperComponent(fc: FunctionComponent<P>) {
         materialProps.PopperComponent = fc
     }
 

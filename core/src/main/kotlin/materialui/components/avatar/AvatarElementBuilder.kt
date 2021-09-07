@@ -9,11 +9,11 @@ import materialui.components.MaterialElementBuilder
 import materialui.components.avatar.enum.AvatarStyle
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
-import react.RProps
+import react.ComponentType
+import react.Props
 
 class AvatarElementBuilder<T: Tag> internal constructor(
-    type: RClass<AvatarProps>,
+    type: ComponentType<AvatarProps>,
     classMap: List<Pair<Enum<*>, String>>,
     factory: (TagConsumer<Unit>) -> T
 ) : MaterialElementBuilder<T, AvatarProps>(type, classMap, factory) {
@@ -21,7 +21,7 @@ class AvatarElementBuilder<T: Tag> internal constructor(
         classes(classMap.map { it.first to it.second })
     }
 
-    var Tag.imgProps: RProps? by materialProps
+    var Tag.imgProps: Props? by materialProps
     var Tag.alt: String? by materialProps
     var Tag.childrenClassName: String? by materialProps
     var Tag.sizes: String? by materialProps
@@ -36,6 +36,6 @@ class AvatarElementBuilder<T: Tag> internal constructor(
         }
 
         @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-        imgProps = props as RProps
+        imgProps = props as Props
     }
 }

@@ -19,7 +19,9 @@ import materialui.lab.components.autocomplete.getTextFieldProps
 import materialui.styles.withStyles
 import org.w3c.dom.events.Event
 import react.*
+import react.dom.attrs
 import react.dom.div
+import react.dom.setProp
 import styled.css
 import styled.styledDiv
 import styled.styledH1
@@ -40,7 +42,7 @@ val DATA: Array<Person> = arrayOf(
     jsObject { name = "Madoka Higuchi"; age = 17 },
 )
 
-class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
+class InputAdornmentsDemo : RComponent<Props, InputAdornmentsState>() {
     override fun InputAdornmentsState.init() {
         amount = ""
         password = ""
@@ -140,6 +142,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                     }
                 }
 
+
                 autoComplete<Person> {
                     attrs.options = DATA
                     attrs.getOptionLabel = { it.name }
@@ -150,11 +153,13 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
                                     icon { +"person" }
                                 }
                             }
-                        textField {
-                            props(it.getTextFieldProps())
-                            attrs.classes("$marginStyle $textFieldStyle")
-                            attrs.label { +"Autocomplete Person" }
-                            attrs.variant = FormControlVariant.outlined
+                        buildElement {
+                            textField {
+                                props(it.getTextFieldProps())
+                                attrs.classes("$marginStyle $textFieldStyle")
+                                attrs.label { +"Autocomplete Person" }
+                                attrs.variant = FormControlVariant.outlined
+                            }
                         }
                     }
                 }
@@ -191,7 +196,7 @@ class InputAdornmentsDemo : RComponent<RProps, InputAdornmentsState>() {
     }
 }
 
-external interface InputAdornmentsState : RState {
+external interface InputAdornmentsState : State {
     var amount: String
     var password: String
     var weight: String

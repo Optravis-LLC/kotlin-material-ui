@@ -2,10 +2,10 @@ package materialui.components.nossr
 
 import materialui.NoSsr
 import react.RBuilder
-import react.RProps
+import react.Props
 import react.ReactElement
 
-external interface NoSsrProps : RProps {
+external interface NoSsrProps : Props {
     var defer: Boolean?
     var fallback: ReactElement?
 }

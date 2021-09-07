@@ -7,11 +7,12 @@ import materialui.components.formcontrollabel.enums.FormControlLabelPlacement
 import materialui.components.formcontrollabel.enums.FormControlLabelStyle
 import materialui.components.getValue
 import materialui.components.setValue
+import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.Event
 import react.*
 
 class FormControlLabelElementBuilder internal constructor(
-    type: RClass<FormControlLabelProps>,
+    type: ComponentType<FormControlLabelProps>,
     classMap: List<Pair<Enum<*>, String>>
 ) : MaterialElementBuilder<LABEL, FormControlLabelProps>(type, classMap, { LABEL(mapOf(), it) }) {
     fun Tag.classes(vararg classMap: Pair<FormControlLabelStyle, String>) {
@@ -21,7 +22,7 @@ class FormControlLabelElementBuilder internal constructor(
     var Tag.checked: Any? by materialProps
     var Tag.control: ReactElement? by materialProps
     var Tag.disabled: Boolean? by materialProps
-    var Tag.inputRef: RRef? by materialProps
+    var Tag.inputRef: RefObject<HTMLElement>? by materialProps
     var Tag.label: ReactElement? by materialProps
     var Tag.labelPlacement: FormControlLabelPlacement? by materialProps
     var Tag.name: String? by materialProps

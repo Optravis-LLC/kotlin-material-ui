@@ -5,12 +5,12 @@ import kotlinx.html.TagConsumer
 import materialui.components.buttonbase.ButtonBaseElementBuilder
 import materialui.components.getValue
 import materialui.components.setValue
-import react.RClass
+import react.ComponentType
 
 class DayElementBuilder<T: Tag> internal constructor(
-    type: RClass<DayProps>, className: String?, factory: (TagConsumer<Unit>) -> T
+    type: ComponentType<DayProps>, className: String?, factory: (TagConsumer<Unit>) -> T
 ) : ButtonBaseElementBuilder<T, DayProps>(type, emptyList(), factory) {
-    init { props.className = className }
+    init { domProps.className = className }
 
     var Tag.day: Any? by materialProps
     var Tag.focused: Boolean? by materialProps
