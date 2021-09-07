@@ -9,7 +9,6 @@ hooks:
   verify:
     - ./gradlew check
   prepare:
-    - "sed -i 's/version.*=.*\".*\"/version = \"{{version}}\"/g' buildSrc/src/main/java/Packages.kt"
-    - "sed -i 's/libVersion.*=.*\".*\"/libVersion = \"{{version}}\"/g' buildSrc/src/main/java/maven-publishing.gradle.kts"
+    - "sed -i 's/packages\.version.*=.*\".*\"/packages.version=\"{{version}}\"/g' gradle.properties"
   publish:
     - ./gradlew publish
