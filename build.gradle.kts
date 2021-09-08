@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
 import org.jetbrains.kotlin.gradle.plugin.KotlinJsPluginWrapper
 import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 
-group = groupId
+group = libraryGroup
 version = "1.0-SNAPSHOT"
 
 plugins {

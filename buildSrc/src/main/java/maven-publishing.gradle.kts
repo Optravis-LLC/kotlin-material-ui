@@ -15,7 +15,7 @@ publishing {
         create<MavenPublication>("kotlin") {
             from(components["kotlin"])
             artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
-            groupId = groupId
+            groupId = libraryGroup
             artifactId = project.name
             version = libraryVersion
 

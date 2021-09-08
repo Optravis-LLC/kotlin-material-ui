@@ -1,4 +1,4 @@
-group = groupId
+group = libraryGroup
 version = libraryVersion
 
 plugins {

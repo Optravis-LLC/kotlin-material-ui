@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
-group = groupId
+group = libraryGroup
 version = "1.0-SNAPSHOT"
 
 plugins {
